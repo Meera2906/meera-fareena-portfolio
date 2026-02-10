@@ -9,7 +9,7 @@
 
 **A modern, interactive portfolio showcasing projects, skills, and professional journey**
 
-[View Live Demo](#) • [Report Bug](#) • [Request Feature](#)
+[View Live Demo](https://meera-fareena-portfolio.vercel.app/) • [Report Bug](https://github.com/Meera2906/meera-fareena-portfolio/issues) • [Request Feature](https://github.com/Meera2906/meera-fareena-portfolio/issues)
 
 </div>
 
