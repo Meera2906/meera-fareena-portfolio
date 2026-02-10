@@ -46,7 +46,7 @@ const App: React.FC = () => {
                 <div className="w-full md:w-[40%]">
                    <div className="aspect-[4/5] bg-gray-200 rounded-[3rem] neo-shadow border-2 border-black overflow-hidden relative group">
                       <img 
-                        src="Pic.jpg" 
+                        src="/Pic.jpg" 
                         alt="Profile" 
                         className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                       />
