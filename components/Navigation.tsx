@@ -21,7 +21,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-6">
       <div className="bg-black/80 backdrop-blur-xl rounded-full p-2 flex items-center justify-between shadow-2xl border border-white/10">
-        <div className="flex items-center gap-1 overflow-x-auto no-scrollbar px-2">
+        <div className="flex items-center gap-1 px-2">
           {tabs.map((tab) => (
             <button
               key={tab}

@@ -8,7 +8,7 @@ export const PERSONAL_INFO = {
   phone: "+91 75983 40237",
   linkedin: "linkedin.com/in/meera-fareena-90007a330",
   github: "github.com/Meera2906",
-  resumeUrl: "https://drive.google.com/file/d/1zpQFn1ssCu5ypGkhcVJ0vGh4aJz7kaVs/view?usp=sharing",
+  resumeUrl: "https://drive.google.com/file/d/1TFKXcVb03viwg4V2i4cqkbuGSutdAiM6/view?usp=sharing",
   summary: "B.Tech student in Artificial Intelligence & Data Science with strong hands-on experience in full-stack and backend development. Proficient in building scalable REST APIs, secure authentication systems, and responsive web applications.",
   avatar: "/pfp.png"
 };
@@ -53,9 +53,45 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const PROJECTS: Project[] = [
   {
+    title: "Self-Evolving AI Mentor Ecosystem",
+    period: "March 2026",
+    link: "https://github.com/Meera2906/self-evolving-ai-mentor-ecosystem",
+    description: [
+      "Multi-agent AI tutoring platform that personalizes learning paths in real-time.",
+      "4 specialized agents: Learner, Assessment, Strategy & Analytics collaborate dynamically.",
+      "Generates adaptive quizzes via Google Gemini AI with mastery-based difficulty scaling."
+    ],
+    tech: ["TypeScript", "React 19", "Node.js", "Gemini AI", "SQLite", "Express"],
+    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=2532&auto=format&fit=crop"
+  },
+  {
+    title: "Hustlr",
+    period: "2026",
+    link: "https://github.com/Meera2906/hustlr",
+    description: [
+      "A modern Next.js application built for the go-getter generation.",
+      "Full-stack TypeScript architecture with clean, scalable module boundaries.",
+      "Deployed on Vercel with responsive design and optimized performance."
+    ],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2670&auto=format&fit=crop"
+  },
+  {
+    title: "Play For Good",
+    period: "April 2026",
+    link: "https://github.com/Meera2906/play-for-good",
+    description: [
+      "Premium full-stack golf charity platform with subscriptions & monthly draw rewards.",
+      "Algorithmic draw engine, Supabase RLS, winner verification & admin console.",
+      "Live: play-for-good-hazel.vercel.app"
+    ],
+    tech: ["React", "TypeScript", "Supabase", "Tailwind CSS v4", "Vite", "Vercel"],
+    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2670&auto=format&fit=crop"
+  },
+  {
     title: "Crop Care Coach",
     period: "March 2025",
-    link: "#",
+    link: "https://github.com/Meera2906/SIH",
     description: [
       "End-to-end agriculture platform for disease detection.",
       "Implemented offline AI models for remote farm usage.",
@@ -67,7 +103,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Visitor Risk Scoring Engine",
     period: "Nov 2025 - Present",
-    link: "#",
+    link: "https://github.com/Meera2906/Visitor-Risk-Score-Engine",
     description: [
       "Built secure Spring Boot REST APIs for visitor risk assessment.",
       "Implemented JWT authentication with role-based access control.",
@@ -79,7 +115,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Aesthetic Calculator",
     period: "April 2025",
-    link: "#",
+    link: "https://github.com/Meera2906/Calculator",
     description: [
       "A high-performance interactive calculator with a neo-brutalist UI.",
       "Features smooth animations and responsive layouts.",

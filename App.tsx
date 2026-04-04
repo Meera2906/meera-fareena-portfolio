@@ -44,15 +44,32 @@ const App: React.FC = () => {
              <div className="bg-white rounded-[4rem] p-10 md:p-16 neo-shadow-deep border border-black/5 flex flex-col md:flex-row gap-16 items-start">
                 {/* Profile Image Column */}
                 <div className="w-full md:w-[40%]">
-                   <div className="aspect-[4/5] bg-gray-200 rounded-[3rem] neo-shadow border-2 border-black overflow-hidden relative group">
+                   <div className="aspect-[4/5] bg-gray-200 rounded-[3rem] neo-shadow border-2 border-black overflow-hidden relative group cursor-pointer">
                       <img 
-                        src="public/Pic.jpg" 
+                        src="/Pic.jpg" 
                         alt="Profile" 
                         className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-6 rounded-[2rem] border border-black/10 shadow-xl">
-                         <div className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Status</div>
-                         <div className="text-sm font-black text-black uppercase tracking-tight">Open for Opportunities</div>
+                      {/* Open to Work overlay */}
+                      <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md rounded-[2rem] border border-black/10 shadow-xl overflow-hidden">
+                         {/* Generated Open to Work banner */}
+                         <div className="h-20 relative overflow-hidden rounded-t-[2rem]">
+                           <img 
+                             src="/open-to-work.png" 
+                             alt="Open to Work" 
+                             className="w-full h-full object-cover"
+                           />
+                         </div>
+                         <div className="px-5 py-4 flex items-center gap-3">
+                           <span className="relative flex h-3 w-3">
+                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                             <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                           </span>
+                           <div>
+                             <div className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400">Status</div>
+                             <div className="text-xs font-black text-black uppercase tracking-tight">Open for Opportunities</div>
+                           </div>
+                         </div>
                       </div>
                    </div>
                 </div>
