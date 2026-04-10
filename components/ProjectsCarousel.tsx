@@ -4,8 +4,12 @@ import { PROJECTS } from '../constants';
 
 const NEW_PROJECTS = [
   "Self-Evolving AI Mentor Ecosystem",
-  "Hustlr",
+  "Task Manager",
   "Play For Good",
+];
+
+const UPCOMING_PROJECTS = [
+  "Hustlr",
 ];
 
 const ProjectsCarousel: React.FC = () => {
@@ -43,6 +47,7 @@ const ProjectsCarousel: React.FC = () => {
       <div id="projects-scroll" className="flex gap-8 overflow-x-auto no-scrollbar px-6 -mx-6 pb-8">
         {PROJECTS.map((project, idx) => {
           const isNew = NEW_PROJECTS.includes(project.title);
+          const isUpcoming = UPCOMING_PROJECTS.includes(project.title);
           const hasLink = project.link && project.link !== '#';
           const CardWrapper = hasLink ? 'a' : 'div';
           const wrapperProps = hasLink
@@ -60,6 +65,11 @@ const ProjectsCarousel: React.FC = () => {
                   {isNew && (
                     <div className="absolute top-4 left-4 bg-green-400 text-black px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
                       ✦ New
+                    </div>
+                  )}
+                  {isUpcoming && (
+                    <div className="absolute top-4 left-4 bg-amber-400 text-black px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+                      ⏳ Upcoming
                     </div>
                   )}
                 </div>

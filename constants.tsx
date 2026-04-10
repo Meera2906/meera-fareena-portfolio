@@ -19,7 +19,7 @@ export const EDUCATION: Education[] = [
     degree: "Bachelor of Technology - Artificial Intelligence and Data Science",
     location: "Coimbatore, India",
     period: "Present - 2028",
-    extra: "CGPA: 8.82"
+    extra: "CGPA: 8.77"
   },
   {
     school: "Francis Xavier School",
@@ -87,6 +87,30 @@ export const PROJECTS: Project[] = [
     ],
     tech: ["React", "TypeScript", "Supabase", "Tailwind CSS v4", "Vite", "Vercel"],
     image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2670&auto=format&fit=crop"
+  },
+  {
+    title: "Task Manager",
+    period: "April 2026",
+    link: "https://github.com/Meera2906/task-manager",
+    description: [
+      "Full-stack task management app with Laravel REST API and React frontend.",
+      "Supports creating, completing, and deleting tasks with live status filtering.",
+      "Decoupled architecture deployed on Railway (backend) and Vercel (frontend)."
+    ],
+    tech: ["Laravel", "React", "PHP", "REST API", "Railway", "Vercel"],
+    image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&w=2670&auto=format&fit=crop"
+  },
+  {
+    title: "LearnNook",
+    period: "April 2026",
+    link: "https://github.com/Meera2906/LearnNook",
+    description: [
+      "AI-powered educational platform generating personalized lessons for grades 5–10.",
+      "Produces real-world imagery and interactive quizzes via OpenRouter AI models.",
+      "Built with FastAPI, Neon PostgreSQL, and deployed on Vercel."
+    ],
+    tech: ["FastAPI", "Python", "PostgreSQL", "OpenRouter AI", "React", "Vercel"],
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2622&auto=format&fit=crop"
   },
   {
     title: "Crop Care Coach",
