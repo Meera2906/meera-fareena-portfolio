@@ -2,14 +2,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { PERSONAL_INFO } from '../constants';
 
-const INTRO_TEXT = "Hey there! I'm Meera — AI & Full-Stack Developer. Welcome!";
+const INTRO_TEXT = "Hey there! Meera here code, coffee, and a little chaos. I build things, break things, then build them better. Welcome in.";
 
 const Hero: React.FC = () => {
   const [showIntro, setShowIntro] = useState(false);
   const [drawLine, setDrawLine] = useState(false);
+  const [introStep, setIntroStep] = useState(0);
   const [typedText, setTypedText] = useState('');
   const [fadeOut, setFadeOut] = useState(false);
   const timeouts = useRef<number[]>([]);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Initialize audio
+    audioRef.current = new Audio('/intro-music.mp3');
+    audioRef.current.volume = 0.4;
+    return () => clearTimers();
+  }, []);
 
   const clearTimers = () => {
     timeouts.current.forEach(id => window.clearTimeout(id));
@@ -19,42 +28,82 @@ const Hero: React.FC = () => {
   const handleGetStarted = () => {
     if (showIntro) return; // ignore repeat clicks mid-animation
     clearTimers();
+    setIntroStep(0);
     setTypedText('');
     setFadeOut(false);
     setShowIntro(true);
 
-    // kick off the line-draw on the next frame so the CSS transition fires
-    const t0 = window.setTimeout(() => setDrawLine(true), 30);
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().catch(err => console.log('Audio playback prevented:', err));
+    }
 
-    // start typing once the infinity line is mostly drawn
-    const t1 = window.setTimeout(() => {
+    const typeText = (text: string, delay: number = 35) => {
+      setTypedText('');
       let i = 0;
       const typeNext = () => {
         i += 1;
-        setTypedText(INTRO_TEXT.slice(0, i));
-        if (i < INTRO_TEXT.length) {
-          const tId = window.setTimeout(typeNext, 35);
-          timeouts.current.push(tId);
+        setTypedText(text.slice(0, i));
+        if (i < text.length) {
+          timeouts.current.push(window.setTimeout(typeNext, delay));
         }
       };
       typeNext();
-    }, 900);
+    };
 
-    // hold, then fade everything out
-    const t2 = window.setTimeout(() => setFadeOut(true), 3200);
+    // kick off the line-draw on the next frame so the CSS transition fires
+    const t0 = window.setTimeout(() => setDrawLine(true), 30);
 
-    // fully reset after fade completes
+    // Step 1: "Hey there!" flies in
+    const t1 = window.setTimeout(() => setIntroStep(1), 900);
+    const t1_out = window.setTimeout(() => setIntroStep(1.5), 2000);
+
+    // Step 2: "Meera here 👋" comes in and waves
+    const t2 = window.setTimeout(() => setIntroStep(2), 2300);
+    const t2_out = window.setTimeout(() => setIntroStep(2.5), 3500);
+
+    // Step 3: "code, coffee..." types in
     const t3 = window.setTimeout(() => {
+      setIntroStep(3);
+      typeText("code, coffee, and a little chaos.");
+    }, 3800);
+    const t3_out = window.setTimeout(() => {
+      setIntroStep(3.5);
+      setTypedText('');
+    }, 5500);
+
+    // Step 4: "I build things..." types in
+    const t4 = window.setTimeout(() => {
+      setIntroStep(4);
+      typeText("I build things, break things, then build them better.");
+    }, 5800);
+    const t4_out = window.setTimeout(() => {
+      setIntroStep(4.5);
+      setTypedText('');
+    }, 9000);
+
+    // Step 5: "Welcome in."
+    const t5 = window.setTimeout(() => {
+      setIntroStep(5);
+    }, 9300);
+
+    // Fade out everything
+    const t6 = window.setTimeout(() => setFadeOut(true), 9800);
+
+    // Full reset
+    const t7 = window.setTimeout(() => {
       setShowIntro(false);
       setDrawLine(false);
+      setIntroStep(0);
       setTypedText('');
       setFadeOut(false);
-    }, 3900);
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    }, 10500);
 
-    timeouts.current.push(t0, t1, t2, t3);
+    timeouts.current.push(t0, t1, t1_out, t2, t2_out, t3, t3_out, t4, t4_out, t5, t6, t7);
   };
-
-  useEffect(() => () => clearTimers(), []);
 
   return (
     <section className="pt-32 pb-16 px-6">
@@ -87,13 +136,74 @@ const Hero: React.FC = () => {
 
                   {showIntro && (
                     <div
-                      className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/80 transition-opacity duration-700 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
+                      className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/90 transition-all duration-700 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
                     >
-                      <div className="text-center px-4 max-w-4xl mx-auto">
-                        <p className="text-white text-3xl md:text-5xl fascinate-regular whitespace-pre-wrap leading-relaxed">
-                          {typedText}
-                          <span className="inline-block w-[3px] h-[1em] bg-white align-middle ml-2 hero-caret animate-pulse" />
-                        </p>
+                      <style>{`
+                        @keyframes hero-wave {
+                          0%, 100% { transform: rotate(0deg); }
+                          25% { transform: rotate(20deg); }
+                          75% { transform: rotate(-15deg); }
+                        }
+                        .hero-wave-anim {
+                          display: inline-block;
+                          transform-origin: 70% 70%;
+                          animation: hero-wave 1.5s infinite;
+                        }
+                      `}</style>
+                      
+                      {/* Infinity SVG Animation */}
+                      <svg 
+                        viewBox="0 0 200 100" 
+                        className={`absolute w-[90vw] max-w-[800px] transition-all duration-500 ease-out ${introStep > 0 ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+                      >
+                        <path
+                           d="M 100,50 C 133,-10 200,-10 200,50 C 200,110 133,110 100,50 C 67,-10 0,-10 0,50 C 0,110 67,110 100,50 Z"
+                           fill="none"
+                           stroke="white"
+                           strokeWidth="1.5"
+                           pathLength="100"
+                           strokeDasharray="100"
+                           strokeDashoffset={drawLine ? 0 : 100}
+                           style={{ transition: 'stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1)' }}
+                        />
+                      </svg>
+
+                      {/* Step 1: Hey there! */}
+                      <div className={`absolute transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${introStep === 1 ? 'opacity-100 translate-y-0 scale-100' : introStep > 1 ? 'opacity-0 -translate-y-12 scale-90' : 'opacity-0 translate-y-12 scale-50'}`}>
+                        <span className="text-white text-5xl md:text-7xl font-bold fascinate-regular">Hey there!</span>
+                      </div>
+
+                      {/* Step 2: Meera here */}
+                      <div className={`absolute transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] flex items-center gap-4 ${introStep === 2 ? 'opacity-100 scale-100' : introStep > 2 ? 'opacity-0 scale-90 blur-sm' : 'opacity-0 scale-50'}`}>
+                        <span className="text-white text-5xl md:text-7xl font-bold fascinate-regular">Meera here</span>
+                        <span className={`text-5xl md:text-7xl ${introStep === 2 ? 'hero-wave-anim' : ''}`}>👋</span>
+                      </div>
+
+                      {/* Step 3: code, coffee... types in */}
+                      <div className={`absolute transition-all duration-300 px-4 text-center ${introStep === 3 ? 'opacity-100' : introStep > 3 ? 'opacity-0 -translate-y-4' : 'opacity-0'}`}>
+                        <span className="text-white text-3xl md:text-5xl font-bold fascinate-regular leading-tight">
+                          {introStep === 3 ? typedText : ''}
+                          {introStep === 3 && <span className="inline-block w-[3px] h-[1em] bg-white align-middle ml-2 animate-pulse" />}
+                        </span>
+                      </div>
+
+                      {/* Step 4: I build things... types in */}
+                      <div className={`absolute transition-all duration-300 px-4 text-center max-w-5xl ${introStep === 4 ? 'opacity-100' : introStep > 4 ? 'opacity-0 -translate-y-4' : 'opacity-0'}`}>
+                        <span className="text-gray-300 text-3xl md:text-5xl font-bold fascinate-regular leading-tight">
+                          {introStep === 4 ? typedText : ''}
+                          {introStep === 4 && <span className="inline-block w-[3px] h-[1em] bg-white align-middle ml-2 animate-pulse" />}
+                        </span>
+                      </div>
+
+                      {/* Step 5: Welcome in */}
+                      <div className={`absolute transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+                        introStep === 5 && !fadeOut ? 'opacity-100 scale-100 translate-y-0' 
+                        : fadeOut ? 'opacity-0 scale-[3] blur-xl' 
+                        : 'opacity-0 scale-50 translate-y-12'
+                      }`}>
+                        <span className="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 fascinate-regular">
+                          Welcome in!
+                        </span>
                       </div>
                     </div>
                   )}

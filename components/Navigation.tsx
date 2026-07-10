@@ -21,12 +21,12 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-6">
       <div className="bg-black/80 backdrop-blur-xl rounded-full p-2 flex items-center justify-between shadow-2xl border border-white/10">
-        <div className="flex items-center gap-1 px-2">
+        <div className="flex items-center gap-1 px-2 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] w-full md:w-auto">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => handleTabClick(tab)}
-              className={`px-5 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest transition-all duration-500 ${
+              className={`whitespace-nowrap shrink-0 px-3 py-2 md:px-5 md:py-2.5 rounded-full text-[9px] md:text-[11px] font-black uppercase tracking-widest transition-all duration-500 ${
                 activeTab === tab 
                 ? "bg-white text-black shadow-[0_10px_20px_rgba(255,255,255,0.15)] scale-105" 
                 : "text-white/40 hover:text-white hover:bg-white/5"

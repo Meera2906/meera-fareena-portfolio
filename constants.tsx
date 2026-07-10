@@ -8,7 +8,7 @@ export const PERSONAL_INFO = {
   phone: "+91 75983 40237",
   linkedin: "linkedin.com/in/meera-fareena-90007a330",
   github: "github.com/Meera2906",
-  resumeUrl: "https://drive.google.com/file/d/1TFKXcVb03viwg4V2i4cqkbuGSutdAiM6/view?usp=sharing",
+  resumeUrl: "https://drive.google.com/file/d/1i-DOSTVOxkHxcbxIDpu54CG7OrJwhaRm/view?usp=sharing",
   summary: "B.Tech student in Artificial Intelligence & Data Science with strong hands-on experience in full-stack and backend development. Proficient in building scalable REST APIs, secure authentication systems, and responsive web applications.",
   avatar: "/pfp.png"
 };
