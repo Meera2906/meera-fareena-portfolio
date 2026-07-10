@@ -1,8 +1,61 @@
 
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { PERSONAL_INFO } from '../constants';
 
+const INTRO_TEXT = "Hey there! I'm Meera — AI & Full-Stack Developer. Welcome!";
+
 const Hero: React.FC = () => {
+  const [showIntro, setShowIntro] = useState(false);
+  const [drawLine, setDrawLine] = useState(false);
+  const [typedText, setTypedText] = useState('');
+  const [fadeOut, setFadeOut] = useState(false);
+  const timeouts = useRef<number[]>([]);
+
+  const clearTimers = () => {
+    timeouts.current.forEach(id => window.clearTimeout(id));
+    timeouts.current = [];
+  };
+
+  const handleGetStarted = () => {
+    if (showIntro) return; // ignore repeat clicks mid-animation
+    clearTimers();
+    setTypedText('');
+    setFadeOut(false);
+    setShowIntro(true);
+
+    // kick off the line-draw on the next frame so the CSS transition fires
+    const t0 = window.setTimeout(() => setDrawLine(true), 30);
+
+    // start typing once the infinity line is mostly drawn
+    const t1 = window.setTimeout(() => {
+      let i = 0;
+      const typeNext = () => {
+        i += 1;
+        setTypedText(INTRO_TEXT.slice(0, i));
+        if (i < INTRO_TEXT.length) {
+          const tId = window.setTimeout(typeNext, 35);
+          timeouts.current.push(tId);
+        }
+      };
+      typeNext();
+    }, 900);
+
+    // hold, then fade everything out
+    const t2 = window.setTimeout(() => setFadeOut(true), 3200);
+
+    // fully reset after fade completes
+    const t3 = window.setTimeout(() => {
+      setShowIntro(false);
+      setDrawLine(false);
+      setTypedText('');
+      setFadeOut(false);
+    }, 3900);
+
+    timeouts.current.push(t0, t1, t2, t3);
+  };
+
+  useEffect(() => () => clearTimers(), []);
+
   return (
     <section className="pt-32 pb-16 px-6">
       <div className="max-w-6xl mx-auto">
@@ -24,9 +77,28 @@ const Hero: React.FC = () => {
               </h1>
 
               <div className="flex gap-4">
-                <button className="bg-white text-black px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform">
-                  GET STARTED
-                </button>
+                <div className="relative inline-block">
+                  <button
+                    onClick={handleGetStarted}
+                    className="relative z-10 bg-white text-black px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform"
+                  >
+                    GET STARTED
+                  </button>
+
+                  {showIntro && (
+                    <div
+                      className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/80 transition-opacity duration-700 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
+                    >
+                      <div className="text-center px-4 max-w-4xl mx-auto">
+                        <p className="text-white text-3xl md:text-5xl fascinate-regular whitespace-pre-wrap leading-relaxed">
+                          {typedText}
+                          <span className="inline-block w-[3px] h-[1em] bg-white align-middle ml-2 hero-caret animate-pulse" />
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
                 <div className="bg-white/10 rounded-full p-3 hover:bg-white/20 transition-colors cursor-pointer">
                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                 </div>
