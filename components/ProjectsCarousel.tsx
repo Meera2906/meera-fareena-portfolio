@@ -3,7 +3,7 @@ import React from 'react';
 import { PROJECTS } from '../constants';
 
 const NEW_PROJECTS = [
-  "Self-Evolving AI Mentor Ecosystem",
+  "Lumina Dental",
   "Task Manager",
   "Play For Good",
 ];

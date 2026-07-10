@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { EDUCATION, WORK_EXPERIENCE, PARTICIPATIONS } from '../constants';
+import { EDUCATION, WORK_EXPERIENCE, PARTICIPATIONS, CERTIFICATIONS } from '../constants';
 
 const TimelineSection: React.FC = () => {
   return (
@@ -41,6 +41,7 @@ const TimelineSection: React.FC = () => {
                       </li>
                     ))}
                   </ul>
+                  <br/>
                 </div>
               ))}
             </div>
@@ -53,7 +54,7 @@ const TimelineSection: React.FC = () => {
                   <div key={idx} className="group border-l-2 border-white/10 pl-8 hover:border-white transition-all duration-300">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
                       <h4 className="font-black text-lg uppercase tracking-tight leading-none group-hover:translate-x-1 transition-transform">{part.title}</h4>
-                      <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">{part.period}</span>
+                      <span className="bg-gray-600 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest self-start md:self-center">{part.period}</span>
                     </div>
                     <p className="text-[10px] font-black text-white/40 uppercase tracking-widest mb-4">{part.team}</p>
                     <p className="text-sm text-white/60 leading-relaxed max-w-lg">
@@ -104,6 +105,24 @@ const TimelineSection: React.FC = () => {
                     <circle cx="50" cy="50" r="40" strokeWidth="1" strokeDasharray="4 4" />
                     <path d="M50 20 L50 80 M20 50 L80 50" strokeWidth="1" />
                  </svg>
+              </div>
+            </div>
+
+            {/* Certifications Card */}
+            <div className="bg-white p-10 rounded-[2.5rem] neo-shadow border border-black/5 mt-8">
+              <div className="mb-8 border-b border-gray-100 pb-6">
+                <h2 className="text-sm font-black uppercase tracking-[0.2em] text-black/40">Certifications</h2>
+              </div>
+              <div className="space-y-5">
+                {CERTIFICATIONS.map((cert, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-black flex-shrink-0"></span>
+                    <div>
+                      <h4 className="text-xs font-black uppercase tracking-tight leading-snug">{cert.title}</h4>
+                      <p className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-1">{cert.issuer} · {cert.date}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

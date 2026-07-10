@@ -34,6 +34,58 @@
             background: #000;
             border-radius: 10px;
         }
+
+        /* ── Doodle idle float animations ────────────────── */
+        @keyframes doodle-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50%       { transform: translateY(-6px) rotate(2deg); }
+        }
+        @keyframes doodle-sway {
+            0%, 100% { transform: translateX(0px) rotate(-2deg); }
+            50%       { transform: translateX(5px) rotate(2deg); }
+        }
+        @keyframes doodle-pulse-idle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50%       { transform: scale(1.06) rotate(-3deg); }
+        }
+
+        /* ── Hover interaction keyframes ─────────────────── */
+        @keyframes kf-swirl {
+            0%   { transform: scale(1) rotate(0deg); }
+            30%  { transform: scale(0.75) rotate(180deg); }
+            60%  { transform: scale(1.15) rotate(300deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+        @keyframes kf-bounce {
+            0%   { transform: scale(1) translateY(0); }
+            25%  { transform: scale(0.8) translateY(8px); }
+            55%  { transform: scale(1.2) translateY(-12px); }
+            75%  { transform: scale(0.95) translateY(4px); }
+            100% { transform: scale(1) translateY(0); }
+        }
+        @keyframes kf-shrink {
+            0%   { transform: scale(1) rotate(0deg); }
+            20%  { transform: scale(0.5) rotate(-15deg); }
+            50%  { transform: scale(1.25) rotate(10deg); }
+            75%  { transform: scale(0.9) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* Idle animations per group */
+        .doodle-anim-swirl  { animation: doodle-float  3.8s ease-in-out infinite; }
+        .doodle-anim-bounce { animation: doodle-sway   4.2s ease-in-out infinite; }
+        .doodle-anim-shrink { animation: doodle-pulse-idle 5s ease-in-out infinite; }
+
+        /* Hover: override idle with interaction animation */
+        .doodle-anim-swirl:hover  {
+            animation: kf-swirl  0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+        }
+        .doodle-anim-bounce:hover {
+            animation: kf-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+        }
+        .doodle-anim-shrink:hover {
+            animation: kf-shrink 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+        }
     </style>
 <script type="importmap">
 {

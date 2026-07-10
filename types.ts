@@ -37,3 +37,9 @@ export interface Participation {
   period: string;
   achievements: string[];
 }
+
+export interface Certification {
+  title: string;
+  issuer: string;
+  date: string;
+}
