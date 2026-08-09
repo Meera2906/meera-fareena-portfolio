@@ -8,7 +8,7 @@ export const PERSONAL_INFO = {
   phone: "+91 75983 40237",
   linkedin: "linkedin.com/in/meera-fareena-90007a330",
   github: "github.com/Meera2906",
-  resumeUrl: "https://drive.google.com/file/d/1i-DOSTVOxkHxcbxIDpu54CG7OrJwhaRm/view?usp=sharing",
+  resumeUrl: "https://drive.google.com/file/d/1lD_INVsEYm8cKuwrxlAntYJjnxbH7iN4/view?usp=sharing",
   summary: "B.Tech student in Artificial Intelligence & Data Science with strong hands-on experience in full-stack and backend development. Proficient in building scalable REST APIs, secure authentication systems, and responsive web applications.",
   avatar: "/pfp.png"
 };
@@ -140,7 +140,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Crop Care Coach",
     period: "March 2025",
-    link: "https://github.com/Meera2906/SIH",
+    link: "https://github.com/Meera2906/crop-care-coach/tree/main/crop-care-coach",
     description: [
       "End-to-end agriculture platform for disease detection.",
       "Implemented offline AI models for remote farm usage.",
